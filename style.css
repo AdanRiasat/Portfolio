@@ -29,6 +29,10 @@ h1 {
     font-size: 35px;
 }
 
+h2 {
+    font-size: 24px;
+}
+
 p {
     font-size: var(--reg-text-size);
 }
@@ -126,11 +130,11 @@ a {
 
 /* Work Experience */
 
-.work-exp, .education {
+.work-exp, .education, .projects {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 100px;
+    gap: 60px;
     width: 100%;
 }
 
@@ -194,9 +198,47 @@ a {
 
 /* Projects */
 
+.projects-body {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
 .categories {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+}
+
+.categories div {
+    font-size: 24px;
+    text-decoration-line: underline;
+    text-underline-offset: 50%;
+    cursor: pointer;
+}
+
+#project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.project {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-details {
+    width: 700px;
+    padding: 30px 20px;
+    background: var(--card-color);
+    border-radius: 15px;
+}
+
+.project-stack {
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
 }
 
 
