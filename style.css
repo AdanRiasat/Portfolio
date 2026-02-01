@@ -1,6 +1,8 @@
 :root {
     --bg-hero: linear-gradient(135deg, #4B2C5E 0%, #6D28A8 45%, #C9A9E6 100%);
     --bg: linear-gradient(135deg, #EBD2FF 0%, #D093FF 55%, #FFF 100%);
+
+    --card-color: linear-gradient(135deg, #F7F2FB 0%, #EADCF5 45%, #FFF 100%);
     
     --white-text: #F4F2FF;
     --purple-text: #4B2C5E;
@@ -118,13 +120,13 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1142px;
-    gap: 100px;
+    width: 1300px;
+    gap: 150px;
 }
 
 /* Work Experience */
 
-.work-exp {
+.work-exp, .education {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -167,8 +169,35 @@ a {
 
 .education-body {
     display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
 }
 
+.edu-card {
+    width: 466px;
+    padding: 40px 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+    background: var(--card-color);
+    border-radius: 15px;
+}
+
+.vertical-seperator {
+    width: 2px;
+    height: 328px;
+    background: var(--white-text);
+    align-self: center;
+}
+
+/* Projects */
+
+.categories {
+    display: flex;
+    gap: 10px;
+}
 
 
 @media (max-width: 1150px) {
