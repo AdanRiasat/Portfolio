@@ -241,6 +241,44 @@ a {
     font-style: italic;
 }
 
+.project-image {
+    width: 350px;
+    background: var(--white-text);
+}
+
+.project-details ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+/* Loading animation */
+
+.loader {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background: var(--bg);
+    
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.loader::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    background: var(--white-text);
+}
+
+.loader.exit {
+    transform: translateY(-100%);
+    opacity: 0;
+}
 
 @media (max-width: 1150px) {
     .hero-image {

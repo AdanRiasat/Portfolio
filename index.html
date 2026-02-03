@@ -12,6 +12,10 @@
 </head>
 
 <body>
+    <!--Loading animation-->
+    <div class="loader"></div>
+
+
     <!--Hero section-->
     <div class="hero">
         <div class="hero-content">
@@ -175,9 +179,9 @@
 
                 <div class="projects-body">
                     <nav class="categories">
-                        <div onclick="topProjects()">Top projects</div>
-                        <div>Apps</div>
-                        <div>Servers</div>
+                        <div onclick="getProjects('TOP')">Top projects</div>
+                        <div onclick="getProjects('APPS')">Apps</div>
+                        <div onclick="getProjects('SERVERS')">Servers</div>
                     </nav>
 
                     <div id="project-list">
@@ -186,7 +190,7 @@
                                 <h2>
                                     EduMeilleur
                                     <span class="project-stack">
-                                        <em>ASP.NET Core, Angular, PostgreSQL, Xunit</em>
+                                        ASP.NET Core, Angular, PostgreSQL, Xunit
                                     </span>
                                 </h2>
                             </div>
