@@ -253,6 +253,47 @@ a {
     padding-left: 20px;
 }
 
+.project-see-more {
+    cursor: pointer;
+}
+
+#readme {
+    width: clamp( 500px, 700px + 20vw, 1500px);
+    border: solid 1px var(--purple-text);
+    border-radius: 15px;
+}
+
+#readme::backdrop {
+    backdrop-filter: blur(4px);
+}
+
+#readme h1, #readme h2, #readme p {
+    margin: 10px;
+}
+
+#readme a {
+    text-decoration: underline;
+    color: var(--purple-text);
+}
+
+.modal-body {
+    padding: 2rem;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+
 /* Loading animation */
 
 .loader {
@@ -264,7 +305,7 @@ a {
     justify-content: center;
     z-index: 10;
     background: var(--bg);
-    
+
     transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
