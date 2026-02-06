@@ -267,7 +267,7 @@ a {
     backdrop-filter: blur(4px);
 }
 
-#readme h1, #readme h2, #readme p {
+#readme h1, #readme h2, #readme p , #readme h3{
     margin: 10px;
 }
 
@@ -291,8 +291,6 @@ a {
     font-size: 1.5rem;
     cursor: pointer;
 }
-
-
 
 /* Loading animation */
 
