@@ -7,7 +7,9 @@
     --white-text: #F4F2FF;
     --purple-text: #4B2C5E;
 
-    --reg-text-size: clamp(13px, calc(2vw + 6px), 16px)
+    --reg-text-size: clamp(13px, calc(2vw + 6px), 16px);
+
+    --border-color: #4B2C5E;
 }
 
 body {
@@ -71,7 +73,9 @@ a {
 .hero-image {
     width: 559px;
     height: 472px;
-    background-color: #C9A9E6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-links {
@@ -149,7 +153,6 @@ a {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    width: 466px;
 }
 
 .exp-title {
@@ -159,7 +162,7 @@ a {
 .exp-description {
     display: flex;
     flex-direction: column;
-    gap: 55px;
+    gap: 40px;
 }
 
 .exp-image {
@@ -167,6 +170,13 @@ a {
     height: 250px;
     background: var(--bg-hero);
     border-radius: 15px;
+}
+
+.exp-image img {
+    width: 558px;
+    height: 250px;
+    border-radius: 15px;
+    border: solid 1px var(--border-color);
 }
 
 /* Education */
@@ -226,6 +236,7 @@ a {
 .project {
     display: flex;
     justify-content: space-between;
+    align-items: stretch;
 }
 
 .project-details {
@@ -244,6 +255,15 @@ a {
 .project-image {
     width: 350px;
     background: var(--white-text);
+    display: flex;
+    border-radius: 15px;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
 }
 
 .project-details ul {
@@ -259,7 +279,7 @@ a {
 
 #readme {
     width: clamp( 500px, 700px + 20vw, 1500px);
-    border: solid 1px var(--purple-text);
+    border: solid 1px var(--border-color);
     border-radius: 15px;
 }
 
