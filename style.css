@@ -314,6 +314,11 @@ a {
 
 /* Loading animation */
 
+#signature-container svg {
+    width: min(60vw, 450px);
+    height: auto;
+}
+
 .loader {
     position: fixed;
     width: 100vw;
@@ -325,13 +330,6 @@ a {
     background: var(--bg);
 
     transition: transform 0.6s ease, opacity 0.6s ease;
-}
-
-.loader::after {
-    content: "";
-    width: 50px;
-    height: 50px;
-    background: var(--white-text);
 }
 
 .loader.exit {
