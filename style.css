@@ -49,12 +49,15 @@ a {
 .hero {
     background: var(--bg-hero);
     height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 .hero-content {
     display: flex;
     align-items: center;
-    justify-content: space-evenly; /* might need to replace */
+    justify-content: space-between; 
+    width: clamp(320px, 90vw, 1300px);
     height: 100%;
 }
 
@@ -128,7 +131,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1300px;
+    width: clamp(320px, 90vw, 1300px);
     gap: 150px;
 }
 
@@ -181,7 +184,7 @@ a {
 
 /* Education */
 
-.education-body {
+.education-content {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
@@ -189,7 +192,7 @@ a {
 }
 
 .edu-card {
-    width: 466px;
+    width: clamp(280px, 80vw, 466px);
     padding: 40px 30px;
     text-align: center;
     display: flex;
@@ -204,6 +207,7 @@ a {
     height: 328px;
     background: var(--white-text);
     align-self: center;
+    opacity: 80%;
 }
 
 /* Projects */
@@ -357,4 +361,32 @@ a {
     .hero-details {
         padding: 10px;
     }
+}
+
+@media (max-width: 1250px) {
+
+    .exp-image, .project-image {
+        display: none;
+    }
+
+    .exp-body {
+        justify-content: center !important;
+    }
+
+    .exp-title, .exp-description {
+        text-align: center;
+    }
+
+    .education-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .vertical-seperator {
+        height: 2px;
+        width: min(200px + 20vw, 350px);
+    }
+
+
 }
