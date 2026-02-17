@@ -314,8 +314,14 @@ a {
 
 /* Loading animation */
 
+#signature-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #signature-container svg {
-    width: min(60vw, 450px);
+    width: min(80vw, 600px);
     height: auto;
 }
 
