@@ -8,6 +8,8 @@
     --purple-text: #4B2C5E;
 
     --reg-text-size: clamp(13px, calc(2vw + 6px), 16px);
+    --h1-text-size: clamp(28px, calc(4vw + 10px), 35px);
+    --h2-text-size: clamp(20px, calc(2vw + 8px), 24px);
 
     --border-color: #4B2C5E;
 }
@@ -28,14 +30,14 @@ body, h1, h2, h3, h4, p {
 }
 
 h1 {
-    font-size: 35px;
+    font-size: var(--h1-text-size);
 }
 
 h2 {
-    font-size: 24px;
+    font-size: var(--h2-text-size);
 }
 
-p {
+p, li {
     font-size: var(--reg-text-size);
 }
 
@@ -132,7 +134,7 @@ a {
     flex-direction: column;
     align-items: center;
     width: clamp(320px, 90vw, 1300px);
-    gap: 150px;
+    gap: clamp(100px, 25vw, 150px);
 }
 
 /* Work Experience */
@@ -241,10 +243,11 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
+    align-self: stretch;
 }
 
 .project-details {
-    width: 700px;
+    width: clamp(320px, 80vw, 700px);
     padding: 30px 20px;
     background: var(--card-color);
     border-radius: 15px;
@@ -347,6 +350,8 @@ a {
     opacity: 0;
 }
 
+/* media hero */
+
 @media (max-width: 1150px) {
     .hero-image {
         display: none;
@@ -362,6 +367,8 @@ a {
         padding: 10px;
     }
 }
+
+/* media experience and education */
 
 @media (max-width: 1250px) {
 
@@ -387,6 +394,16 @@ a {
         height: 2px;
         width: min(200px + 20vw, 350px);
     }
+}
 
+/* media projects */
 
+@media (max-width: 800px) {
+    .projects-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: stretch;
+
+    }
 }
