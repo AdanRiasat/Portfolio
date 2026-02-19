@@ -284,6 +284,8 @@ a {
     cursor: pointer;
 }
 
+/* Project modals */
+
 #readme {
     width: clamp( 500px, 700px + 20vw, 1500px);
     border: solid 1px var(--border-color);
@@ -317,6 +319,13 @@ a {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+    outline: none
+}
+
+.error-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Loading animation */

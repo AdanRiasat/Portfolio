@@ -94,28 +94,41 @@ async function getReadme(gitUrl) {
 
     let readMeUrl = `https://api.github.com/repos/${owner}/${repo}/readme`;
 
-    let res = await fetch(readMeUrl, {
-        headers: { 'Accept': 'application/vnd.github.raw+json'}
-    });
+    try {
+        let res = await fetch(readMeUrl, {
+            headers: { 'Accept': 'application/vnd.github.raw+json'}
+        });
 
-    let markdown = await res.text();
-    
-    let htmlRes = await fetch('https://api.github.com/markdown', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            text: markdown,
-            mode: 'gfm',
-            context: `${owner}/${repo}`
-        })
-    });
-    
-    let html = await htmlRes.text();
-    console.log(html);
+        if (!res.ok) {
+            errorModal('Sorry, no extra information is available for this project');
+            return;
+        }
 
-    readmeModal(html);
+        let markdown = await res.text();
+        
+        let htmlRes = await fetch('https://api.github.com/markdown', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                text: markdown,
+                mode: 'gfm',
+                context: `${owner}/${repo}`
+            })
+        });
+
+        if (!htmlRes.ok) {
+            errorModal('Sorry, no extra information is available for this project');
+            return;
+        }
+        
+        let html = await htmlRes.text();
+
+        readmeModal(html);
+    } catch (error){
+        errorModal('Something happened, an error occured');
+    }
 }
 
 
@@ -133,7 +146,12 @@ function readmeModal(content) {
 
     let bodyDiv = document.createElement('div');
     bodyDiv.classList.add('modal-body');
-    bodyDiv.innerHTML = content;
+    
+    if (typeof content === 'string'){
+        bodyDiv.innerHTML = content
+    } else {
+        bodyDiv.appendChild(content)
+    }
 
     modal.appendChild(closeBtn);
     modal.appendChild(bodyDiv);
@@ -149,6 +167,19 @@ function readmeModal(content) {
 
     document.body.appendChild(modal);
     modal.showModal();
+}
+
+function errorModal(message) {
+    let contentDiv = document.createElement('div');
+    let messageH2 = document.createElement('h3');
+    let iconSvg = document.getElementById('sad-face-icon').content.cloneNode(true);
+
+    contentDiv.classList.add('error-modal-content')
+    messageH2.innerText = message;
+    contentDiv.appendChild(messageH2);
+    contentDiv.appendChild(iconSvg);
+
+    readmeModal(contentDiv)
 }
 
 function getProjectList(projectType) {
