@@ -12,6 +12,7 @@
     --h2-text-size: clamp(20px, calc(2vw + 8px), 24px);
 
     --border-color: #4B2C5E;
+    --border-color-lighter: #C9A9E6;
 }
 
 body {
@@ -296,6 +297,10 @@ a {
     backdrop-filter: blur(4px);
 }
 
+#readme h1, #readme h2 {
+    border-bottom-color: var(--border-color-lighter);
+}
+
 #readme h1, #readme h2, #readme p , #readme h3{
     margin: 10px;
 }
@@ -303,6 +308,13 @@ a {
 #readme a {
     text-decoration: underline;
     color: var(--purple-text);
+}
+
+#readme pre {
+    outline: solid 1px var(--border-color-lighter);
+    border-radius: 10px;
+    padding: 1rem;
+    overflow-x: auto;
 }
 
 .modal-body {

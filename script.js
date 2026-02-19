@@ -124,6 +124,8 @@ async function getReadme(gitUrl) {
         }
         
         let html = await htmlRes.text();
+        console.log(html);
+        
 
         readmeModal(html);
     } catch (error){
@@ -146,6 +148,7 @@ function readmeModal(content) {
 
     let bodyDiv = document.createElement('div');
     bodyDiv.classList.add('modal-body');
+    bodyDiv.classList.add('markdown-body')
     
     if (typeof content === 'string'){
         bodyDiv.innerHTML = content
