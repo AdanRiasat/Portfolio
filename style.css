@@ -340,6 +340,10 @@ a {
     align-items: center;
 }
 
+.error-modal-content h3 {
+    text-align: center;
+}
+
 /* Loading animation */
 
 #signature-container {
