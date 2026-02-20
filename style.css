@@ -245,6 +245,26 @@ a {
     justify-content: space-between;
     align-items: stretch;
     align-self: stretch;
+
+    transform: scale(0.8);
+    opacity: 0;
+    animation: fade-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+}
+
+@keyframes fade-in {
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
 }
 
 .project-details {
@@ -274,6 +294,10 @@ a {
     object-fit: cover;
 }
 
+
+
+
+
 .project-details ul {
     display: flex;
     flex-direction: column;
@@ -283,6 +307,18 @@ a {
 
 .project-see-more {
     cursor: pointer;
+}
+
+.project-github {
+    cursor: pointer;
+}
+
+.project-github path{
+    fill: var(--border-color);
+}
+
+.project-github:hover path{
+    fill: #7c4dff;
 }
 
 /* Project modals */

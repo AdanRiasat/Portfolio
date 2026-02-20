@@ -63,18 +63,25 @@ function getProjects(projectType) {
         let detailsDiv = document.createElement('div');
         let seeMoreDiv = document.createElement('div');
         let imageDiv = document.createElement('div');
+        let projectHeaderDiv = document.createElement('div')
 
         let titleH = document.createElement('h2');
         let stackSpan = document.createElement('span');
         let descriptionUl = document.createElement('ul');
         let imageImg = document.createElement('img');
-
-        addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreDiv)
+        
+        addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreDiv, projectHeaderDiv);
 
         titleH.textContent = p.title;
         stackSpan.textContent = " " + p.techStack;
-        titleH.appendChild(stackSpan);
 
+        titleH.appendChild(stackSpan);
+        projectHeaderDiv.appendChild(titleH);
+
+        if (p.gitUrl != ""){
+            projectGithubLink(p.gitUrl, projectHeaderDiv)
+        }
+        
         descriptionUl.innerHTML = p.description
             .split('\n')
             .map(line => `<li>${line.replace(/^•\s*/, '')}</li>`)
@@ -85,7 +92,7 @@ function getProjects(projectType) {
 
         imageImg.src = p.imagePath;
 
-       completeProjectList(detailsDiv, imageDiv, projectDiv, titleH, descriptionUl, imageImg, seeMoreDiv, projectList);
+       completeProjectList(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList);
     }
 }
 
@@ -187,10 +194,10 @@ function errorModal(message) {
 
 function getProjectList(projectType) {
     const eduMeilleur = new Project("EduMeilleur", "ASP.NET Core, Angular, PostgreSQL, Xunit", "https://github.com/AdanRiasat/EduMeilleur", "• Développé une application Web full-stack utilisant ASP.NET Core (C#) pour l’API   REST backend et Angular (TypeScript, HTML, CSS, Bootstrap) pour l’interface frontend.\n• Rédigé des tests unitaires automatisés pour les contrôleurs et services backend avec Xunit.", "");
-    const gameHub = new Project("GameHub", "React, Firebase", "no sir", "no sir", "");
+    const gameHub = new Project("GameHub", "React, Firebase", "", "no sir", "");
     const raspiWeb = new Project("Raspi_WebHost", "Bash, Nginx, Debian", "https://github.com/AdanRiasat/RaspPi_WebHost", "• Configuré un Raspberry Pi 4 sous Debian pour héberger entièrement l’application ÉduMeilleur, incluant le frontend Angular, le backend ASP.NET Core et la base de données PostgreSQL", "");
     const consoleTodo = new Project("Console To-Do list", "C++", "https://github.com/AdanRiasat/ToDoList_Cpp", "• Développé une application console To-Do List en C++ pour pratiquer la gestion de mémoire, les pointeurs et les structures de données", "assets/images/consoleCpp.png");
-    const fanNoise = new Project("Fan Noise Mobile", "Flutter, SQLite", "no sir", "no sir", "assets/images/fanNoise.png");
+    const fanNoise = new Project("Fan Noise Mobile", "Flutter, SQLite", "", "no sir", "assets/images/fanNoise.png");
 
     let projects = [];
 
@@ -209,7 +216,19 @@ function getProjectList(projectType) {
     return projects;
 }
 
-function addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreDiv) {
+function projectGithubLink(gitUrl, projectHeaderDiv){
+    let gitLinkA = document.createElement('a');
+    let gitSvg = document.getElementById('github-icon').cloneNode(true);
+
+    gitSvg.classList.add('project-github')
+    gitLinkA.setAttribute('href', gitUrl);
+    gitLinkA.appendChild(gitSvg)
+    
+    projectHeaderDiv.appendChild(gitLinkA);
+}
+
+function addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreDiv, projectHeaderDiv) {
+    projectHeaderDiv.classList.add('project-header')
     projectDiv.classList.add('project');
     detailsDiv.classList.add('project-details');
     imageDiv.classList.add('project-image');
@@ -217,8 +236,8 @@ function addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreD
     seeMoreDiv.classList.add('project-see-more');
 }
 
-function completeProjectList(detailsDiv, imageDiv, projectDiv, titleH, descriptionUl, imageImg, seeMoreDiv, projectList) {
-    detailsDiv.appendChild(titleH);
+function completeProjectList(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList) {
+    detailsDiv.appendChild(projectHeaderDiv);
     detailsDiv.appendChild(descriptionUl);
     detailsDiv.appendChild(seeMoreDiv);
     imageDiv.appendChild(imageImg);
