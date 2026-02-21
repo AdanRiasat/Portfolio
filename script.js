@@ -53,12 +53,15 @@ const ProjectType = {
 }
 
 function getProjects(projectType) {
+    const projectSection = document.querySelector('.projects');
+    projectSection.scrollIntoView({ behavior: 'smooth', block: 'start'});
+
     const projects = getProjectList(projectType);
 
     const projectList = document.getElementById('project-list');
     projectList.innerHTML = '';
 
-    for (let p of projects) {
+    projects.forEach((p, index) => {
         let projectDiv = document.createElement('div');
         let detailsDiv = document.createElement('div');
         let seeMoreDiv = document.createElement('div');
@@ -92,8 +95,12 @@ function getProjects(projectType) {
 
         imageImg.src = p.imagePath;
 
-       completeProjectList(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList);
-    }
+       completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList);
+
+       setTimeout(() => {
+        projectDiv.classList.add('show');
+       }, index * 120)
+    }) 
 }
 
 async function getReadme(gitUrl) {
@@ -236,7 +243,7 @@ function addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreD
     seeMoreDiv.classList.add('project-see-more');
 }
 
-function completeProjectList(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList) {
+function completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList) {
     detailsDiv.appendChild(projectHeaderDiv);
     detailsDiv.appendChild(descriptionUl);
     detailsDiv.appendChild(seeMoreDiv);

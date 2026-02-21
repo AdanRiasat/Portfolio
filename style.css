@@ -146,12 +146,6 @@ a {
     animation: border-spin 3s linear infinite;
 }
 
-@keyframes border-spin {
-    to {
-        --angle: 360deg;
-    }
-}
-
 .hero-socials {
     display: flex;
     gap: 5px;
@@ -176,8 +170,6 @@ a {
 .hero-socials svg:hover path {
     fill: #D093FF;
 }
-
-
 
 .hover-action {
     position: absolute;
@@ -233,7 +225,7 @@ a {
 
 /* Work Experience */
 
-.work-exp, .education, .projects {
+.work-exp, .education, .projects, .extras {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -296,7 +288,15 @@ a {
     gap: 55px;
     background: var(--card-color);
     border-radius: 15px;
+
+    opacity: 0;
+    transform: translateY(80px) scale(0.9);
+
+    animation: fade-in 0.7s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 50%;
 }
+
 
 .edu-card-header {
     display: flex;
@@ -353,16 +353,10 @@ a {
 
     transform: scale(0.8);
     opacity: 0;
-    animation: fade-in linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 100%;
 }
 
-@keyframes fade-in {
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+.project.show {
+    animation: project-fade 0.5s ease forwards;
 }
 
 .project-header {
@@ -512,6 +506,34 @@ a {
 .loader.exit {
     transform: translateY(-100%);
     opacity: 0;
+}
+
+/* Extra section */
+
+.extras {
+    
+}
+
+/* animations */
+
+@keyframes border-spin {
+    to {
+        --angle: 360deg;
+    }
+}
+
+@keyframes fade-in {
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes project-fade {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* media hero */
