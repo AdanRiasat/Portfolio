@@ -15,6 +15,12 @@
     --border-color-lighter: #C9A9E6;
 }
 
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     -ms-overflow-style: none;
@@ -91,6 +97,7 @@ a {
 }
 
 #cv {
+    position: relative;
     width: clamp(70px, calc(2vw + 60px), 100px);
     height: clamp(85px, calc(2vw + 70px), 115px);
     border: solid 1px var(--white-text);
@@ -101,11 +108,48 @@ a {
     justify-content: center;
     gap: 10px;
     cursor: pointer;
+    z-index: 1;
+
+    transition: all 0.5s ease;
+}
+
+#cv:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(197, 145, 231, 0.5);
 }
 
 #cv svg {
     width: clamp(40px, calc(2vw + 20px), 55px);
     height: clamp(40px, calc(2vw + 20px), 55px);
+}
+
+#cv::before {
+    content: '';
+    position: absolute;
+    inset: -3px; 
+    border-radius: 18px;
+    padding: 3px;
+
+    background: conic-gradient(
+        from var(--angle),
+        transparent 30%,
+        #7c4dff
+    );
+
+    -webkit-mask: 
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    z-index: -1;
+    animation: border-spin 3s linear infinite;
+}
+
+@keyframes border-spin {
+    to {
+        --angle: 360deg;
+    }
 }
 
 .hero-socials {
@@ -122,7 +166,18 @@ a {
     cursor: pointer;
     width: clamp(30px, calc(2vw + 15px), 40px);
     height: clamp(30px, calc(2vw + 15px), 40px);
+    position: relative;
 }
+
+.hero-socials path {
+    transition: fill 0.5s;
+}
+
+.hero-socials svg:hover path {
+    fill: #D093FF;
+}
+
+
 
 .hover-action {
     position: absolute;
@@ -243,6 +298,18 @@ a {
     border-radius: 15px;
 }
 
+.edu-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.edu-card-header small {
+    position: absolute;
+    top: 35px;
+}
+
 .vertical-seperator {
     width: 2px;
     height: 328px;
@@ -332,10 +399,6 @@ a {
     object-fit: cover;
 }
 
-
-
-
-
 .project-details ul {
     display: flex;
     flex-direction: column;
@@ -353,6 +416,8 @@ a {
 
 .project-github path{
     fill: var(--border-color);
+
+    transition: all 0.5s;
 }
 
 .project-github:hover path{
