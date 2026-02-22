@@ -334,9 +334,44 @@ a {
 
 .categories div {
     font-size: 24px;
-    text-decoration-line: underline;
-    text-underline-offset: 50%;
     cursor: pointer;
+    position: relative;
+    padding-bottom: 7px;
+}
+
+.categories div::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--purple-text);
+
+    transform: translateX(-50%) scale(0);
+    transform-origin: center;
+    transition: transform 0.5s ease;
+}
+
+.categories div.select::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.categories div::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 10px;
+    height: 2px;
+    background-color: var(--purple-text);
+
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.2s ease;
+}
+
+.categories div:not(.select):hover::before {
+    transform: translateX(-50%) scale(1);
 }
 
 #project-list {

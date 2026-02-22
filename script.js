@@ -52,7 +52,10 @@ const ProjectType = {
     SERVERS: "SERVERS"
 }
 
-function getProjects(projectType) {
+function getProjects(projectType, categoryDiv) {
+    document.querySelectorAll('.categories div').forEach(div => div.classList.remove('select'));
+    categoryDiv.classList.add('select');
+
     const projectSection = document.querySelector('.projects');
     projectSection.scrollIntoView({ behavior: 'smooth', block: 'start'});
 
@@ -253,5 +256,6 @@ function completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, des
     projectList.appendChild(projectDiv);
 }
 
-getProjects(ProjectType.TOP); // get projects on init
+let defaultCategory = document.querySelector('.categories div');
+getProjects(ProjectType.TOP, defaultCategory); // get projects on init
 
