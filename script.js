@@ -25,14 +25,50 @@ window.addEventListener("load", () => {
 
     const LOADER_DURATION = 3000;
 
+    document.body.classList.add('no-scroll');
+
     drawSignature()
 
     setTimeout(() => {
         loader.classList.add("exit");
+        document.body.classList.remove('no-scroll');
 
-        setTimeout(() => {loader.remove()}, 2000)
+        setTimeout(() => {
+            loader.remove()
+        }, 2000)
     }, LOADER_DURATION);
 })
+
+// Floating items
+
+const floatingItems = document.querySelectorAll('.floating-item');
+
+floatingItems.forEach(item => {
+
+    item.addEventListener('mousemove', (e) => {
+        const rect = item.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
+
+        const maxMove = 12; 
+
+        item.style.transform = `
+            translate(${deltaX * maxMove}px, ${deltaY * maxMove}px)
+        `;
+    });
+
+    item.addEventListener('mouseleave', () => {
+        item.style.transform = 'translate(0, 0)';
+    });
+
+});
 
 // Project 
 
@@ -56,8 +92,8 @@ function getProjects(projectType, categoryDiv) {
     document.querySelectorAll('.categories div').forEach(div => div.classList.remove('select'));
     categoryDiv.classList.add('select');
 
-    const projectSection = document.querySelector('.projects');
-    projectSection.scrollIntoView({ behavior: 'smooth', block: 'start'});
+    //const projectSection = document.querySelector('.projects');
+    //projectSection.scrollIntoView({ behavior: 'smooth', block: 'start'});
 
     const projects = getProjectList(projectType);
 
