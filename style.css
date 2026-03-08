@@ -600,7 +600,8 @@ a {
 /* media hero */
 
 @media (max-width: 1150px) {
-    .hero-image {
+    .hero-image, 
+    .floating-item {
         display: none;
     }
 
@@ -619,7 +620,8 @@ a {
 
 @media (max-width: 1250px) {
 
-    .exp-image, .project-image {
+    .exp-image,
+    .project-image {
         display: none;
     }
 
@@ -627,7 +629,8 @@ a {
         justify-content: center !important;
     }
 
-    .exp-title, .exp-description {
+    .exp-title, 
+    .exp-description {
         text-align: center;
     }
 
