@@ -41,33 +41,41 @@ window.addEventListener("load", () => {
 
 // Floating items
 
-const floatingItems = document.querySelectorAll('.floating-item');
+document.querySelectorAll('.hero-image-wrapper .floating-item').forEach((item, i) => { // Floating animation and positioning
+    item.style.animationDelay = `${i * 0.8}s`;
 
-floatingItems.forEach(item => {
+    const sides = ['top', 'right', 'bottom', 'left'];
+    const side = sides[i % sides.length];
 
-    item.addEventListener('mousemove', (e) => {
-        const rect = item.getBoundingClientRect();
+    const totalItems = document.querySelectorAll('.hero-image-wrapper .floating-item').length;
+    const itemsPerSide = Math.ceil(totalItems / sides.length);
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    const slotIndex = Math.floor(i / sides.length);
+    const slotSize = 70 / itemsPerSide;
+    const slotStart = 15 + slotIndex * slotSize;
+    const pos = `${slotStart + Math.random() * slotSize}%`;
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+    const placement = {
+        top:    { top: '-25px', left: pos     },
+        bottom: { top: '100%',  left: pos     },
+        left:   { top: pos,     left: '-25px' },
+        right:  { top: pos,     left: '100%'  },
+    }[side];
 
-        const deltaX = (x - centerX) / centerX;
-        const deltaY = (y - centerY) / centerY;
+    Object.assign(item.style, placement);
+});
 
-        const maxMove = 12; 
-
-        item.style.transform = `
-            translate(${deltaX * maxMove}px, ${deltaY * maxMove}px)
-        `;
+document.querySelectorAll('.floating-item svg').forEach(svg => { // Mouse tracking animation
+    svg.addEventListener('mousemove', (e) => {
+        const rect = svg.getBoundingClientRect();
+        const deltaX = (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2);
+        const deltaY = (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2);
+        svg.style.transform = `translate(${deltaX * 12}px, ${deltaY * 12}px)`;
     });
 
-    item.addEventListener('mouseleave', () => {
-        item.style.transform = 'translate(0, 0)';
+    svg.addEventListener('mouseleave', () => {
+        svg.style.transform = 'translate(0, 0)';
     });
-
 });
 
 // Project 
@@ -240,10 +248,10 @@ function errorModal(message) {
 
 function getProjectList(projectType) {
     const eduMeilleur = new Project("EduMeilleur", "ASP.NET Core, Angular, PostgreSQL, Xunit", "https://github.com/AdanRiasat/EduMeilleur", "• Développé une application Web full-stack utilisant ASP.NET Core (C#) pour l’API   REST backend et Angular (TypeScript, HTML, CSS, Bootstrap) pour l’interface frontend.\n• Rédigé des tests unitaires automatisés pour les contrôleurs et services backend avec Xunit.", "");
-    const gameHub = new Project("GameHub", "React, Firebase", "", "no sir", "");
+    const gameHub = new Project("GameHub", "React, Firebase", "", "• Website to showcase games I’ve developed, including JavaScript/React games and engine-based games.\n• Uses Firebase for authentication and database management.\n• Currently hosts simple games such as Snake, No-Wifi Dino, and Tic-Tac-Toe.", "");
     const raspiWeb = new Project("Raspi_WebHost", "Bash, Nginx, Debian", "https://github.com/AdanRiasat/RaspPi_WebHost", "• Configuré un Raspberry Pi 4 sous Debian pour héberger entièrement l’application ÉduMeilleur, incluant le frontend Angular, le backend ASP.NET Core et la base de données PostgreSQL", "");
     const consoleTodo = new Project("Console To-Do list", "C++", "https://github.com/AdanRiasat/ToDoList_Cpp", "• Développé une application console To-Do List en C++ pour pratiquer la gestion de mémoire, les pointeurs et les structures de données", "assets/images/consoleCpp.png");
-    const fanNoise = new Project("Fan Noise Mobile", "Flutter, SQLite", "", "no sir", "assets/images/fanNoise.png");
+    const fanNoise = new Project("Fan Noise Mobile", "Flutter, SQLite", "", "Flutter mobile app that plays white noise to help with sleep.\n• Uses SQLite for local storage, making the app fully serverless and offline-friendly.\n• Includes preset sounds (e.g., fan noise) and allows users to add their own audio files.", "assets/images/fanNoise.png");
 
     let projects = [];
 

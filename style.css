@@ -91,16 +91,13 @@ a {
     display: inline-block;
 }
 
-.floating-wrapper {
+.floating-item {
     position: absolute;
     animation: float 4s ease-in-out infinite;
 }
 
-.floating-item {
-    width: 40px;
-    height: 40px;
-    border: solid;
-
+.floating-item svg {
+    width: 90px;
     transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
     will-change: transform;
 }
