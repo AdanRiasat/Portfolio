@@ -114,13 +114,14 @@ function getProjects(projectType, categoryDiv) {
         let seeMoreDiv = document.createElement('div');
         let imageDiv = document.createElement('div');
         let projectHeaderDiv = document.createElement('div')
+        let projectBodyDiv = document.createElement('div')
 
         let titleH = document.createElement('h2');
         let stackSpan = document.createElement('span');
         let descriptionUl = document.createElement('ul');
         let imageImg = document.createElement('img');
         
-        addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreDiv, projectHeaderDiv);
+        addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreDiv, projectHeaderDiv, projectBodyDiv);
 
         titleH.textContent = p.title;
         stackSpan.textContent = " " + p.techStack;
@@ -142,7 +143,7 @@ function getProjects(projectType, categoryDiv) {
 
         imageImg.src = p.imagePath;
 
-       completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList);
+       completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList, projectBodyDiv);
 
        setTimeout(() => {
         projectDiv.classList.add('show');
@@ -281,8 +282,9 @@ function projectGithubLink(gitUrl, projectHeaderDiv){
     projectHeaderDiv.appendChild(gitLinkA);
 }
 
-function addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreDiv, projectHeaderDiv) {
+function addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreDiv, projectHeaderDiv, projectBodyDiv) {
     projectHeaderDiv.classList.add('project-header')
+    projectBodyDiv.classList.add('project-body')
     projectDiv.classList.add('project');
     detailsDiv.classList.add('project-details');
     imageDiv.classList.add('project-image');
@@ -290,10 +292,11 @@ function addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreD
     seeMoreDiv.classList.add('project-see-more');
 }
 
-function completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList) {
+function completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList, projectBodyDiv) {
+    projectBodyDiv.appendChild(descriptionUl);
+    projectBodyDiv.appendChild(seeMoreDiv);
     detailsDiv.appendChild(projectHeaderDiv);
-    detailsDiv.appendChild(descriptionUl);
-    detailsDiv.appendChild(seeMoreDiv);
+    detailsDiv.appendChild(projectBodyDiv)
     imageDiv.appendChild(imageImg);
     projectDiv.appendChild(detailsDiv);
     projectDiv.appendChild(imageDiv);

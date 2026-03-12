@@ -420,6 +420,15 @@ a {
     animation: project-fade 0.5s ease forwards;
 }
 
+.project-details {
+    display: flex;
+    flex-direction: column;
+    width: clamp(320px, 80vw, 700px);
+    padding: 30px 20px;
+    background: var(--card-color);
+    border-radius: 15px;
+}
+
 .project-header {
     display: flex;
     align-items: center;
@@ -427,11 +436,22 @@ a {
     align-self: stretch;
 }
 
-.project-details {
-    width: clamp(320px, 80vw, 700px);
-    padding: 30px 20px;
-    background: var(--card-color);
-    border-radius: 15px;
+.project-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-details ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+.project-see-more {
+    cursor: pointer;
 }
 
 .project-stack {
@@ -452,17 +472,6 @@ a {
     height: 100%;
     border-radius: 15px;
     object-fit: cover;
-}
-
-.project-details ul {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-left: 20px;
-}
-
-.project-see-more {
-    cursor: pointer;
 }
 
 .project-github {
