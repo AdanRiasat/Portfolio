@@ -1,3 +1,5 @@
+const NO_IMAGE_PATH = "assets/images/no_image.png"
+
 // Intro animation
 
 function drawSignature() {
@@ -141,13 +143,18 @@ function getProjects(projectType, categoryDiv) {
         seeMoreDiv.innerHTML = "See more"
         seeMoreDiv.addEventListener('click', () => getReadme(p.gitUrl));
 
-        imageImg.src = p.imagePath;
+        if (p.imagePath == ""){
+            imageImg.src = NO_IMAGE_PATH;
+            imageDiv.classList.add('no-image');
+        } else {
+            imageImg.src = p.imagePath;
+        }
 
-       completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList, projectBodyDiv);
+        completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList, projectBodyDiv);
 
-       setTimeout(() => {
-        projectDiv.classList.add('show');
-       }, index * 120)
+        setTimeout(() => {
+            projectDiv.classList.add('show');
+        }, index * 120)
     }) 
 }
 
@@ -298,9 +305,13 @@ function completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, des
     detailsDiv.appendChild(projectHeaderDiv);
     detailsDiv.appendChild(projectBodyDiv)
     imageDiv.appendChild(imageImg);
+    
     projectDiv.appendChild(detailsDiv);
     projectDiv.appendChild(imageDiv);
     projectList.appendChild(projectDiv);
+
+    imageDiv.style.height = detailsDiv.offsetHeight + 'px';
+    imageDiv.style.width = '350px';
 }
 
 let defaultCategory = document.querySelector('.categories div');
