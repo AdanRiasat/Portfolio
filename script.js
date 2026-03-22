@@ -8,6 +8,7 @@ function drawSignature() {
 
     path.style.strokeDasharray = pathLength;
     path.style.strokeDashoffset = pathLength;
+    path.style.opacity = 1;
 
     const style = document.createElement('style');
     style.innerHTML = `

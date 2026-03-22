@@ -568,6 +568,10 @@ a {
     height: auto;
 }
 
+#signature-path {
+    opacity: 0;
+}
+
 .loader {
     position: fixed;
     width: 100vw;
