@@ -84,12 +84,13 @@ document.querySelectorAll(".floating-item svg").forEach((svg) => {
 // Project
 
 class Project {
-  constructor(title, techStack, gitUrl, description, imagePath) {
+  constructor(title, techStack, gitUrl, description, imagePath, imageContain = false) {
     this.title = title;
     this.techStack = techStack;
     this.gitUrl = gitUrl;
     this.description = description;
     this.imagePath = imagePath;
+    this.imageContain = imageContain;
   }
 }
 
@@ -143,6 +144,7 @@ function getProjects(projectType, categoryDiv) {
 
     if (p.imagePath != "") {
       imageImg.src = p.imagePath;
+      if (p.imageContain) imageDiv.classList.add("image-contain");
     }
 
     completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, descriptionUl, imageImg, seeMoreDiv, projectList, projectBodyDiv);
@@ -259,7 +261,8 @@ function getProjectList(projectType) {
     "ASP.NET Core, Angular, PostgreSQL, Xunit",
     "https://github.com/AdanRiasat/EduMeilleur",
     "• Développé une application Web full-stack utilisant ASP.NET Core (C#) pour l’API   REST backend et Angular (TypeScript, HTML, CSS, Bootstrap) pour l’interface frontend.\n• Rédigé des tests unitaires automatisés pour les contrôleurs et services backend avec Xunit.",
-    "",
+    "assets/images/edumeilleur-logo.png",
+    true,
   );
   const gameHub = new Project(
     "GameHub",

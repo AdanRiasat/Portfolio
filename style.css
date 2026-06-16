@@ -486,6 +486,18 @@ a {
   object-fit: cover;
 }
 
+.project-image.image-contain {
+  justify-content: center;
+  align-items: center;
+}
+
+.project-image.image-contain img {
+  width: auto;
+  height: auto;
+  max-width: calc(100% - 40px);
+  max-height: calc(100% - 40px);
+}
+
 .no-image {
   justify-content: center;
   align-items: center;
@@ -538,7 +550,7 @@ a {
 #readme h2,
 #readme p,
 #readme h3 {
-  margin: 15px;
+  margin: 15px 0;
 }
 
 #readme a {
