@@ -314,6 +314,7 @@ function projectGithubLink(gitUrl, projectDiv) {
   gitSvg.classList.add("project-github");
   gitLinkA.classList.add("project-github-link");
   gitLinkA.setAttribute("href", gitUrl);
+  gitLinkA.setAttribute("target", "_blank");
   gitLinkA.appendChild(gitSvg);
 
   projectDiv.appendChild(gitLinkA);
@@ -339,7 +340,6 @@ function completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, des
   projectDiv.appendChild(detailsDiv);
   projectDiv.appendChild(imageDiv);
   projectList.appendChild(projectDiv);
-
 }
 
 let defaultCategory = document.querySelector(".categories div");
