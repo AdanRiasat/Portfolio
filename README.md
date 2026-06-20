@@ -13,6 +13,6 @@ VERCEL.
 ## TODOs
 
 - Animate hero image.
-- Improve Work Experience section (mobile and web).
+- Improve Work Experience section (mobile and web interfaces).
 - Add an extras section.
 - Add bot detection on cv.
