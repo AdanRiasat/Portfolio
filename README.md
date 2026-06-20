@@ -14,6 +14,5 @@ VERCEL.
 
 - Animate hero image.
 - Improve Work Experience section (mobile and web).
-- Improve Projects, make one card with details and image.
 - Add an extras section.
 - Add bot detection on cv.
