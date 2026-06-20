@@ -283,7 +283,7 @@ function getProjectList(projectType) {
     "C++",
     "https://github.com/AdanRiasat/ToDoList_Cpp",
     "• Développé une application console To-Do List en C++ pour pratiquer la gestion de mémoire, les pointeurs et les structures de données",
-    "assets/images/consoleCpp.png",
+    "",
   );
   const fanNoise = new Project(
     "Fan Noise Mobile",
