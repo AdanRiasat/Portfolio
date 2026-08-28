@@ -1,98 +1,4 @@
-// Intro animation
-
-function drawSignature() {
-  const path = document.getElementById("signature-path");
-  const pathLength = path.getTotalLength();
-
-  path.style.strokeDasharray = pathLength;
-  path.style.strokeDashoffset = pathLength;
-  path.style.opacity = 1;
-
-  const style = document.createElement("style");
-  style.innerHTML = `
-        @keyframes drawSignature {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-    `;
-  document.head.appendChild(style);
-
-  path.style.animation = "drawSignature 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards";
-}
-
-window.addEventListener("load", () => {
-  let loader = document.querySelector(".loader");
-
-  const LOADER_DURATION = 3000;
-
-  document.body.classList.add("no-scroll");
-
-  drawSignature();
-
-  setTimeout(() => {
-    loader.classList.add("exit");
-    document.body.classList.remove("no-scroll");
-
-    setTimeout(() => {
-      loader.remove();
-    }, 2000);
-  }, LOADER_DURATION);
-});
-
-// Floating items
-
-document.querySelectorAll(".hero-image-wrapper .floating-item").forEach((item, i) => {
-  // Floating animation and positioning
-  item.style.animationDelay = `${i * 0.8}s`;
-
-  const sides = ["top", "right", "bottom", "left"];
-  const side = sides[i % sides.length];
-
-  const totalItems = document.querySelectorAll(".hero-image-wrapper .floating-item").length;
-  const itemsPerSide = Math.ceil(totalItems / sides.length);
-
-  const slotIndex = Math.floor(i / sides.length);
-  const slotSize = 70 / itemsPerSide;
-  const slotStart = 15 + slotIndex * slotSize;
-  const pos = `${slotStart + Math.random() * slotSize}%`;
-
-  const placement = {
-    top: { top: "-25px", left: pos },
-    bottom: { top: "100%", left: pos },
-    left: { top: pos, left: "-25px" },
-    right: { top: pos, left: "100%" },
-  }[side];
-
-  Object.assign(item.style, placement);
-});
-
-document.querySelectorAll(".floating-item svg").forEach((svg) => {
-  // Mouse tracking animation
-  svg.addEventListener("mousemove", (e) => {
-    const rect = svg.getBoundingClientRect();
-    const deltaX = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-    const deltaY = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-    svg.style.transform = `translate(${deltaX * 12}px, ${deltaY * 12}px)`;
-  });
-
-  svg.addEventListener("mouseleave", () => {
-    svg.style.transform = "translate(0, 0)";
-  });
-});
-
-// Project
-
-class Project {
-  constructor(title, techStack, gitUrl, description, imagePath, imageContain = false) {
-    this.title = title;
-    this.techStack = techStack;
-    this.gitUrl = gitUrl;
-    this.description = description;
-    this.imagePath = imagePath;
-    this.imageContain = imageContain;
-  }
-}
+import { projectsByType } from "./seed.js";
 
 const ProjectType = {
   TOP: "TOP",
@@ -104,7 +10,7 @@ function getProjects(projectType, categoryDiv) {
   document.querySelectorAll(".categories div").forEach((div) => div.classList.remove("select"));
   categoryDiv.classList.add("select");
 
-  const projects = getProjectList(projectType);
+  const projects = projectsByType[projectType] ?? [];
 
   const projectList = document.getElementById("project-list");
   projectList.innerHTML = "";
@@ -255,61 +161,6 @@ function errorModal(message) {
   readmeModal(contentDiv);
 }
 
-function getProjectList(projectType) {
-  const eduMeilleur = new Project(
-    "EduMeilleur",
-    "ASP.NET Core, Angular, PostgreSQL, Xunit",
-    "https://github.com/AdanRiasat/EduMeilleur",
-    "• Développé une application Web full-stack utilisant ASP.NET Core (C#) pour l’API   REST backend et Angular (TypeScript, HTML, CSS, Bootstrap) pour l’interface frontend.\n• Rédigé des tests unitaires automatisés pour les contrôleurs et services backend avec Xunit.",
-    "assets/images/edumeilleur-logo.png",
-    true,
-  );
-  const gameHub = new Project(
-    "GameHub",
-    "React, Firebase",
-    "",
-    "• Website to showcase games I’ve developed, including JavaScript/React games and engine-based games.\n• Uses Firebase for authentication and database management.\n• Currently hosts simple games such as Snake, No-Wifi Dino, and Tic-Tac-Toe.",
-    "",
-  );
-  const raspiWeb = new Project(
-    "Raspi_WebHost",
-    "Bash, Nginx, Debian",
-    "https://github.com/AdanRiasat/RaspPi_WebHost",
-    "• Configuré un Raspberry Pi 4 sous Debian pour héberger entièrement l’application ÉduMeilleur, incluant le frontend Angular, le backend ASP.NET Core et la base de données PostgreSQL",
-    "",
-  );
-  const consoleTodo = new Project(
-    "Console To-Do list",
-    "C++",
-    "https://github.com/AdanRiasat/ToDoList_Cpp",
-    "• Développé une application console To-Do List en C++ pour pratiquer la gestion de mémoire, les pointeurs et les structures de données",
-    "",
-  );
-  const fanNoise = new Project(
-    "Fan Noise Mobile",
-    "Flutter, SQLite",
-    "",
-    "Flutter mobile app that plays white noise to help with sleep.\n• Uses SQLite for local storage, making the app fully serverless and offline-friendly.\n• Includes preset sounds (e.g., fan noise) and allows users to add their own audio files.",
-    "assets/images/fanNoise.png",
-  );
-
-  let projects = [];
-
-  switch (projectType) {
-    case ProjectType.TOP:
-      projects = [eduMeilleur, raspiWeb];
-      break;
-    case ProjectType.APPS:
-      projects = [eduMeilleur, gameHub, consoleTodo, fanNoise];
-      break;
-    case ProjectType.SERVERS:
-      projects = [raspiWeb];
-      break;
-  }
-
-  return projects;
-}
-
 function projectGithubLink(gitUrl, projectDiv) {
   let gitLinkA = document.createElement("a");
   let gitSvg = document.getElementById("github-icon").cloneNode(true);
@@ -344,6 +195,10 @@ function completeProject(detailsDiv, imageDiv, projectDiv, projectHeaderDiv, des
   projectDiv.appendChild(imageDiv);
   projectList.appendChild(projectDiv);
 }
+
+document.querySelectorAll(".categories div").forEach((div) => {
+  div.addEventListener("click", () => getProjects(ProjectType[div.dataset.projectType], div));
+});
 
 let defaultCategory = document.querySelector(".categories div");
 getProjects(ProjectType.TOP, defaultCategory); // get projects on init
