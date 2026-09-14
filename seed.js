@@ -45,9 +45,38 @@ const fanNoise = new Project(
   "Flutter mobile app that plays white noise to help with sleep.\n• Uses SQLite for local storage, making the app fully serverless and offline-friendly.\n• Includes preset sounds (e.g., fan noise) and allows users to add their own audio files.",
   "assets/images/fanNoise.png",
 );
+const bill = new Project(
+  "2D platformer",
+  "Unity, C#",
+  "",
+  "• 2D platformer built in Unity with a Metroidvania-style controller.\n Features a custom sword parry system, wave-based enemy fights, and boss battles to reach the end.\n Uses free assets from the Unity Asset Store.",
+  "",
+);
+const cms = new Project(
+  "Centre Multi Service",
+  "Go, Docker, K8s, HTMX, PostgreSQL",
+  "https://git.agecem.com/bottin/cms",
+  "• POS system with full inventory management for a small shop run by AGECEM within Cégep Édouard-Montpetit.\n Uses the bottin microservice for member data, with Google OAuth2 login and role-based access control.",
+  "",
+);
+const resolutions = new Project(
+  "Resolutions",
+  "Go, Docker, K8s, HTMX, PostgreSQL",
+  "https://git.agecem.com/agecem/resolutions",
+  "• Management system for resolutions submitted by AGECEM members.\n Imports resolution data from Excel spreadsheets and provides an HTMX-driven UI for review and tracking.",
+  "",
+);
+const agecem = new Project(
+  "AGECEM Website",
+  "Go, Docker, K8s, HTMX",
+  "https://git.agecem.com/agecem/agecem-org",
+  "• Public website for AGECEM.\n Uses the resolutions app as a microservice to display the list of resolutions publicly.",
+  "",
+);
 
 export const projectsByType = {
-  TOP: [eduMeilleur, raspiWeb],
-  APPS: [eduMeilleur, gameHub, consoleTodo, fanNoise],
+  TOP: [eduMeilleur, raspiWeb, cms, bill],
+  APPS: [eduMeilleur, gameHub, consoleTodo, fanNoise, cms, resolutions, agecem, bill],
   SERVERS: [raspiWeb],
+  ALL: [eduMeilleur, gameHub, consoleTodo, fanNoise, cms, resolutions, agecem, bill, raspiWeb],
 };
