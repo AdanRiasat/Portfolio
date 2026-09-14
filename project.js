@@ -4,6 +4,7 @@ const ProjectType = {
   TOP: "TOP",
   APPS: "APPS",
   SERVERS: "SERVERS",
+  ALL: "ALL",
 };
 
 function getProjects(projectType, categoryDiv) {
