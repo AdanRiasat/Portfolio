@@ -79,14 +79,16 @@ const agecem = new Project(
   "AGECEM Website",
   "Go, Docker, K8s, HTMX",
   "https://git.agecem.com/agecem/agecem-org",
-  "",
+  "https://agecem.org/",
   "• Public website for AGECEM.\n Uses the resolutions app as a microservice to display the list of resolutions publicly.",
   "",
 );
 
+const portfolio = new Project("Portfolio", "HTML, CSS, JS", "https://github.com/AdanRiasat/Portfolio", "", "• My portfolio site, yep this one right here.", "");
+
 export const projectsByType = {
   TOP: [eduMeilleur, raspiWeb, cms, bill],
-  APPS: [eduMeilleur, gameHub, consoleTodo, fanNoise, cms, resolutions, agecem, bill],
+  APPS: [eduMeilleur, gameHub, consoleTodo, fanNoise, cms, resolutions, agecem, bill, portfolio],
   SERVERS: [raspiWeb],
-  ALL: [eduMeilleur, gameHub, consoleTodo, fanNoise, cms, resolutions, agecem, bill, raspiWeb],
+  ALL: [eduMeilleur, gameHub, consoleTodo, fanNoise, cms, resolutions, agecem, bill, raspiWeb, portfolio],
 };
