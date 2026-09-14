@@ -37,8 +37,14 @@ function getProjects(projectType, categoryDiv) {
     titleH.appendChild(stackSpan);
     projectHeaderDiv.appendChild(titleH);
 
-    if (p.gitUrl != "") {
-      projectGithubLink(p.gitUrl, projectDiv);
+    if (p.gitUrl != "" || p.prodUrl != "") {
+      let linksDiv = document.createElement("div");
+      linksDiv.classList.add("project-links");
+
+      if (p.prodUrl != "") projectLink(p.prodUrl, "globe-icon", linksDiv);
+      if (p.gitUrl != "") projectLink(p.gitUrl, "github-icon", linksDiv);
+
+      projectDiv.appendChild(linksDiv);
     }
 
     descriptionUl.innerHTML = p.description
@@ -162,17 +168,19 @@ function errorModal(message) {
   readmeModal(contentDiv);
 }
 
-function projectGithubLink(gitUrl, projectDiv) {
-  let gitLinkA = document.createElement("a");
-  let gitSvg = document.getElementById("github-icon").cloneNode(true);
+function projectLink(url, iconId, linksDiv) {
+  let linkA = document.createElement("a");
+  let iconEl = document.getElementById(iconId);
+  let iconSvg = iconEl instanceof HTMLTemplateElement ? iconEl.content.firstElementChild.cloneNode(true) : iconEl.cloneNode(true);
 
-  gitSvg.classList.add("project-github");
-  gitLinkA.classList.add("project-github-link");
-  gitLinkA.setAttribute("href", gitUrl);
-  gitLinkA.setAttribute("target", "_blank");
-  gitLinkA.appendChild(gitSvg);
+  iconSvg.removeAttribute("id");
+  iconSvg.classList.add("project-icon");
+  linkA.classList.add("project-link");
+  linkA.setAttribute("href", url);
+  linkA.setAttribute("target", "_blank");
+  linkA.appendChild(iconSvg);
 
-  projectDiv.appendChild(gitLinkA);
+  linksDiv.appendChild(linkA);
 }
 
 function addProjectClasses(projectDiv, detailsDiv, imageDiv, stackSpan, seeMoreDiv, projectHeaderDiv, projectBodyDiv) {
