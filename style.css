@@ -466,6 +466,22 @@ a {
 
 .project-see-more {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+
+.project-see-more.disabled {
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.see-more-spinner {
+  width: 1em;
+  height: 1em;
+  font-size: 1rem;
 }
 
 .project-stack {
@@ -509,23 +525,29 @@ a {
   color: var(--border-color-lighter);
 }
 
-.project-github-link {
+.project-links {
   position: absolute;
   top: 15px;
   right: 15px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.project-github {
+.project-icon {
   cursor: pointer;
 }
 
-.project-github path {
+.project-icon path,
+.project-icon circle {
   fill: var(--border-color);
 
   transition: all 0.5s;
 }
 
-.project-github:hover path {
+.project-icon:hover path,
+.project-icon:hover circle {
   fill: #7c4dff;
 }
 
