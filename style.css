@@ -466,6 +466,22 @@ a {
 
 .project-see-more {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+
+.project-see-more.disabled {
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.see-more-spinner {
+  width: 1em;
+  height: 1em;
+  font-size: 1rem;
 }
 
 .project-stack {

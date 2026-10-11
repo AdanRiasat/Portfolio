@@ -53,7 +53,10 @@ function getProjects(projectType, categoryDiv) {
       .join("");
 
     seeMoreDiv.innerHTML = "See more";
-    seeMoreDiv.addEventListener("click", () => getReadme(p.gitUrl));
+    seeMoreDiv.addEventListener("click", () => {
+      if (seeMoreDiv.classList.contains("disabled")) return;
+      getReadme(p.gitUrl, seeMoreDiv);
+    });
 
     if (p.imagePath != "") {
       imageImg.src = p.imagePath;
@@ -75,7 +78,9 @@ function getProjects(projectType, categoryDiv) {
   });
 }
 
-async function getReadme(gitUrl) {
+async function getReadme(gitUrl, seeMoreDiv) {
+  setSeeMoreLoading(seeMoreDiv, true);
+
   let [, , , owner, repo] = gitUrl.split("/");
 
   let readMeUrl = `https://api.github.com/repos/${owner}/${repo}/readme`;
@@ -86,7 +91,7 @@ async function getReadme(gitUrl) {
     });
 
     if (!res.ok) {
-      errorModal("Sorry, no extra information is available for this project");
+      errorModal("Sorry, no extra information is available for this project", seeMoreDiv);
       return;
     }
 
@@ -105,20 +110,36 @@ async function getReadme(gitUrl) {
     });
 
     if (!htmlRes.ok) {
-      errorModal("Sorry, no extra information is available for this project");
+      errorModal("Sorry, no extra information is available for this project", seeMoreDiv);
       return;
     }
 
     let html = await htmlRes.text();
-    console.log(html);
 
-    readmeModal(html);
+    readmeModal(html, seeMoreDiv);
   } catch (error) {
-    errorModal("Something happened, an error occured");
+    errorModal("Something happened, an error occured", seeMoreDiv);
   }
 }
 
-function readmeModal(content) {
+function setSeeMoreLoading(seeMoreDiv, isLoading) {
+  seeMoreDiv.classList.toggle("disabled", isLoading);
+  setSeeMoreSpinner(seeMoreDiv, isLoading);
+}
+
+function setSeeMoreSpinner(seeMoreDiv, show) {
+  let spinner = seeMoreDiv.querySelector(".see-more-spinner");
+
+  if (show && !spinner) {
+    spinner = document.getElementById("spinner-icon").content.cloneNode(true).firstElementChild;
+    spinner.classList.add("see-more-spinner");
+    seeMoreDiv.appendChild(spinner);
+  } else if (!show && spinner) {
+    spinner.remove();
+  }
+}
+
+function readmeModal(content, seeMoreDiv) {
   let modal = document.createElement("dialog");
   modal.id = "readme";
 
@@ -149,13 +170,18 @@ function readmeModal(content) {
     }
   });
 
-  modal.addEventListener("close", () => modal.remove());
+  modal.addEventListener("close", () => {
+    modal.remove();
+    seeMoreDiv.classList.remove("disabled");
+  });
+
+  setSeeMoreSpinner(seeMoreDiv, false);
 
   document.body.appendChild(modal);
   modal.showModal();
 }
 
-function errorModal(message) {
+function errorModal(message, seeMoreDiv) {
   let contentDiv = document.createElement("div");
   let messageH2 = document.createElement("h3");
   let iconSvg = document.getElementById("sad-face-icon").content.cloneNode(true);
@@ -165,7 +191,7 @@ function errorModal(message) {
   contentDiv.appendChild(messageH2);
   contentDiv.appendChild(iconSvg);
 
-  readmeModal(contentDiv);
+  readmeModal(contentDiv, seeMoreDiv);
 }
 
 function projectLink(url, iconId, linksDiv) {
