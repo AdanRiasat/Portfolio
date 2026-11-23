@@ -10,6 +10,7 @@
   --reg-text-size: clamp(13px, calc(2vw + 6px), 16px);
   --h1-text-size: clamp(28px, calc(4vw + 10px), 35px);
   --h2-text-size: clamp(20px, calc(2vw + 8px), 24px);
+  --header-text-size: clamp(16px, calc(2vw + 8px), 20px);
 
   --border-color: #4b2c5e;
   --border-color-lighter: #c9a9e6;
@@ -73,7 +74,7 @@ a {
 
 .nav-bar-list {
   position: fixed;
-  top: 0;
+  top: 5px;
   display: flex;
   list-style: none;
   gap: 15px;
@@ -82,7 +83,24 @@ a {
   padding: 0;
 }
 
+.nav-bar-list li {
+  animation: nav-float 6s ease-in-out infinite;
+}
+
+.nav-bar-list li:nth-child(2) {
+  animation-delay: 1.2s;
+}
+
+.nav-bar-list li:nth-child(3) {
+  animation-delay: 2.4s;
+}
+
+.nav-bar-list li:nth-child(4) {
+  animation-delay: 3.6s;
+}
+
 .nav-bar-list li a {
+  font-size: var(--header-text-size);
   position: relative;
   display: inline-block;
   padding-bottom: 7px;
@@ -149,18 +167,6 @@ a {
   width: 90px;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   will-change: transform;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
 }
 
 .hero-image {
@@ -717,6 +723,28 @@ a {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes nav-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }
 
