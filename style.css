@@ -22,6 +22,10 @@
   inherits: false;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   position: relative;
   font-family: "Inter", sans-serif;
