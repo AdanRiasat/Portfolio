@@ -15,7 +15,7 @@ const eduMeilleur = new Project(
   "ASP.NET Core, Angular, PostgreSQL, Xunit",
   "https://github.com/AdanRiasat/EduMeilleur",
   "https://edumeilleur.ca",
-  "• Développé une application Web full-stack utilisant ASP.NET Core (C#) pour l’API   REST backend et Angular (TypeScript, HTML, CSS, Bootstrap) pour l’interface frontend.\n• Rédigé des tests unitaires automatisés pour les contrôleurs et services backend avec Xunit.",
+  "• Developed a full-stack web application using ASP.NET Core (C#) for the backend REST API and Angular (TypeScript, HTML, CSS, Bootstrap) for the frontend.\n• Wrote automated unit tests for backend controllers and services with Xunit.",
   "assets/images/edumeilleur-logo.png",
   true,
 );
@@ -32,7 +32,7 @@ const raspiWeb = new Project(
   "Bash, Nginx, Debian",
   "https://github.com/AdanRiasat/RaspPi_WebHost",
   "",
-  "• Configuré un Raspberry Pi 4 sous Debian pour héberger entièrement l’application ÉduMeilleur, incluant le frontend Angular, le backend ASP.NET Core et la base de données PostgreSQL",
+  "• Configured a Raspberry Pi 4 running Debian to fully host the EduMeilleur application, including the Angular frontend, the ASP.NET Core backend and the PostgreSQL database.",
   "",
 );
 const consoleTodo = new Project(
@@ -40,7 +40,7 @@ const consoleTodo = new Project(
   "C++",
   "https://github.com/AdanRiasat/ToDoList_Cpp",
   "",
-  "• Développé une application console To-Do List en C++ pour pratiquer la gestion de mémoire, les pointeurs et les structures de données",
+  "• Developed a console To-Do List application in C++ to practice memory management, pointers and data structures.",
   "",
 );
 const fanNoise = new Project(
