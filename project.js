@@ -1,4 +1,5 @@
 import { projectsByType } from "./seed.js";
+import { t, translateProject } from "./i18n.js";
 
 const ProjectType = {
   TOP: "TOP",
@@ -7,11 +8,17 @@ const ProjectType = {
   ALL: "ALL",
 };
 
+let currentType = ProjectType.TOP;
+let currentCategoryDiv = null;
+
 function getProjects(projectType, categoryDiv) {
+  currentType = projectType;
+  currentCategoryDiv = categoryDiv;
+
   document.querySelectorAll(".categories div").forEach((div) => div.classList.remove("select"));
   categoryDiv.classList.add("select");
 
-  const projects = projectsByType[projectType] ?? [];
+  const projects = (projectsByType[projectType] ?? []).map(translateProject);
 
   const projectList = document.getElementById("project-list");
   projectList.innerHTML = "";
@@ -52,7 +59,7 @@ function getProjects(projectType, categoryDiv) {
       .map((line) => `<li>${line.replace(/^•\s*/, "")}</li>`)
       .join("");
 
-    seeMoreDiv.innerHTML = "See more";
+    seeMoreDiv.innerHTML = t("projects.seeMore");
     seeMoreDiv.addEventListener("click", () => {
       if (seeMoreDiv.classList.contains("disabled")) return;
       getReadme(p.gitUrl, seeMoreDiv);
@@ -91,7 +98,7 @@ async function getReadme(gitUrl, seeMoreDiv) {
     });
 
     if (!res.ok) {
-      errorModal("Sorry, no extra information is available for this project", seeMoreDiv);
+      errorModal(t("projects.noInfo"), seeMoreDiv);
       return;
     }
 
@@ -110,7 +117,7 @@ async function getReadme(gitUrl, seeMoreDiv) {
     });
 
     if (!htmlRes.ok) {
-      errorModal("Sorry, no extra information is available for this project", seeMoreDiv);
+      errorModal(t("projects.noInfo"), seeMoreDiv);
       return;
     }
 
@@ -118,7 +125,7 @@ async function getReadme(gitUrl, seeMoreDiv) {
 
     readmeModal(html, seeMoreDiv);
   } catch (error) {
-    errorModal("Something happened, an error occured", seeMoreDiv);
+    errorModal(t("projects.error"), seeMoreDiv);
   }
 }
 
@@ -237,3 +244,6 @@ document.querySelectorAll(".categories div").forEach((div) => {
 
 let defaultCategory = document.querySelector(".categories div");
 getProjects(ProjectType.TOP, defaultCategory); // get projects on init
+
+// Re-render the current category in the new language
+document.addEventListener("langchange", () => getProjects(currentType, currentCategoryDiv));

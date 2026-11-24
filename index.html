@@ -44,10 +44,10 @@
       <nav>
         <div class="nav-bar">
           <ul class="nav-bar-list">
-            <li><a href="">About me</a></li>
-            <li><a href="#exp-section">Experience</a></li>
-            <li><a href="#education-section">Education</a></li>
-            <li><a href="#projects-section">Projects</a></li>
+            <li><a href="" data-i18n="nav.about">About me</a></li>
+            <li><a href="#exp-section" data-i18n="nav.experience">Experience</a></li>
+            <li><a href="#education-section" data-i18n="nav.education">Education</a></li>
+            <li><a href="#projects-section" data-i18n="nav.projects">Projects</a></li>
           </ul>
         </div>
       </nav>
@@ -57,12 +57,12 @@
     <div class="hero">
       <div class="hero-content">
         <div class="hero-details">
-          <div class="hero-title">
+          <div class="hero-title" data-i18n-html="hero.title">
             <span style="font-size: clamp(25px, calc(2vw + 15px), 30px)">Hello,</span><br />
             <span style="font-size: clamp(35px, calc(2vw + 30px), 46px)"> I'm <span style="color: #d093ff">Adan</span> <br />Software Developer </span>
           </div>
 
-          <div class="hero-description">Software developer specializing in web, mobile and AI. Open to collaborating on new projects.</div>
+          <div class="hero-description" data-i18n="hero.description">Software developer specializing in web, mobile and AI. Open to collaborating on new projects.</div>
 
           <div class="hero-links">
             <a href="assets/Adan-Riasat-classic-en.pdf" download="AdanRiasat_CV.pdf">
@@ -141,7 +141,7 @@
 
         <div class="hero-image-wrapper">
           <div class="hero-image">
-            <img src="assets/images/hero.svg" alt="hey there man" />
+            <img src="assets/images/hero.svg" alt="hey there man" data-i18n-alt="hero.imageAlt" />
           </div>
 
           <div class="floating-item">
@@ -276,25 +276,25 @@
       <div class="main-content">
         <!--Work Experience-->
         <div id="exp-section" class="work-exp">
-          <h1>Work Experience</h1>
+          <h1 data-i18n="exp.title">Work Experience</h1>
 
           <div class="exp-body">
             <div class="exp-details">
               <div class="exp-title">
-                <h2><span style="font-weight: bold">Backend Go developer at AGECEM</span></h2>
+                <h2><span style="font-weight: bold" data-i18n="exp.agecem.title">Backend Go developer at AGECEM</span></h2>
                 <h2>
-                  <span style="font-weight: 300"><em>2026, 7 months</em></span>
+                  <span style="font-weight: 300"><em data-i18n="exp.agecem.date">2026, 7 months</em></span>
                 </h2>
               </div>
               <div class="exp-description">
-                <p>Worked on AGECEM's internal apps.</p>
+                <p data-i18n="exp.agecem.p1">Worked on AGECEM's internal apps.</p>
 
-                <p>
+                <p data-i18n-html="exp.agecem.p2">
                   Fixed bugs, optimized existing features and worked on new ones<br />
                   on multiple applications.
                 </p>
 
-                <p>Built backend services using Go, Docker, PostgreSQL and K8s.</p>
+                <p data-i18n="exp.agecem.p3">Built backend services using Go, Docker, PostgreSQL and K8s.</p>
               </div>
             </div>
 
@@ -310,17 +310,17 @@
 
             <div class="exp-details">
               <div class="exp-title">
-                <h2><span style="font-weight: bold">Tutor at Édouard-Montpetit</span></h2>
+                <h2><span style="font-weight: bold" data-i18n="exp.tutor.title">Tutor at Édouard-Montpetit</span></h2>
                 <h2>
-                  <span style="font-weight: 300"><em>2025, 3 months</em></span>
+                  <span style="font-weight: 300"><em data-i18n="exp.tutor.date">2025, 3 months</em></span>
                 </h2>
               </div>
               <div class="exp-description">
-                <p>Tutor for transactional web programming.</p>
+                <p data-i18n="exp.tutor.p1">Tutor for transactional web programming.</p>
 
-                <p>Helped students complete assignments and answered their questions.</p>
+                <p data-i18n="exp.tutor.p2">Helped students complete assignments and answered their questions.</p>
 
-                <p>
+                <p data-i18n-html="exp.tutor.p3">
                   Explained key concepts related to MVC architecture, Entity<br />
                   Framework, JavaScript, jQuery, and AJAX.
                 </p>
@@ -331,7 +331,7 @@
 
         <!--Education-->
         <div id="education-section" class="education">
-          <h1>Education</h1>
+          <h1 data-i18n="edu.title">Education</h1>
 
           <div class="education-content">
             <div class="edu-card">
@@ -340,9 +340,9 @@
                 <small>(2023 - 2026)</small>
               </div>
 
-              <p>Technical DEC in Computer Science</p>
-              <p>Learned how to build web, mobile and desktop apps, as well as how to work with agile methodologies, manage databases and design apps.</p>
-              <p>R-Score: 30.7</p>
+              <p data-i18n="edu.cegep.degree">Technical DEC in Computer Science</p>
+              <p data-i18n="edu.cegep.desc">Learned how to build web, mobile and desktop apps, as well as how to work with agile methodologies, manage databases and design apps.</p>
+              <p data-i18n="edu.cegep.score">R-Score: 30.7</p>
             </div>
 
             <div class="vertical-seperator"></div>
@@ -353,23 +353,23 @@
                 <small>(2026 - 2029)</small>
               </div>
 
-              <p>Bachelor's in Computer Science</p>
-              <p>Learning the science behind computation, how systems are built and how they function.</p>
-              <p>GPA: NA</p>
+              <p data-i18n="edu.concordia.degree">Bachelor's in Computer Science</p>
+              <p data-i18n="edu.concordia.desc">Learning the science behind computation, how systems are built and how they function.</p>
+              <p data-i18n="edu.concordia.score">GPA: NA</p>
             </div>
           </div>
         </div>
 
         <!--Projects-->
         <div id="projects-section" class="projects">
-          <h1>Personal projects</h1>
+          <h1 data-i18n="projects.title">Personal projects</h1>
 
           <div class="projects-body">
             <nav class="categories">
-              <div data-project-type="TOP">Top projects</div>
-              <div data-project-type="APPS">Apps</div>
-              <div data-project-type="SERVERS">Servers</div>
-              <div data-project-type="ALL">All projects</div>
+              <div data-project-type="TOP" data-i18n="projects.top">Top projects</div>
+              <div data-project-type="APPS" data-i18n="projects.apps">Apps</div>
+              <div data-project-type="SERVERS" data-i18n="projects.servers">Servers</div>
+              <div data-project-type="ALL" data-i18n="projects.all">All projects</div>
             </nav>
 
             <div id="project-list"></div>
